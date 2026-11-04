@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cuida+ | Avaliar consulta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/avaliacao.css">
+</head>
+<body>
+  <div id="cabecalho"></div>
+
+  <main class="avaliacao-main">
+    <section class="card avaliacao-card" id="cartao-avaliacao" hidden>
+      <div>
+        <h1>Como foi sua consulta?</h1>
+        <p class="subtitulo">Sua opinião ajuda outros pacientes e melhora o atendimento.</p>
+      </div>
+
+      <div class="consulta-resumo" id="consulta-resumo"></div>
+
+      <form class="avaliacao-form" id="form-avaliacao" novalidate>
+        <div class="bloco-nota">
+          <h2 id="rotulo-nota">Nota geral</h2>
+          <div class="nota-geral">
+            <div id="estrelas-geral" aria-labelledby="rotulo-nota"></div>
+            <span class="texto-nota" id="texto-nota" aria-live="polite"></span>
+          </div>
+          <p class="msg-erro" id="erro-nota" role="alert" hidden>Escolha uma nota geral de 1 a 5 estrelas.</p>
+        </div>
+
+        <hr class="divisor">
+
+        <div class="criterios">
+          <div class="criterio"><span id="rotulo-atendimento">Atendimento do médico</span><div id="estrelas-atendimento" aria-labelledby="rotulo-atendimento"></div></div>
+          <div class="criterio"><span id="rotulo-pontualidade">Pontualidade</span><div id="estrelas-pontualidade" aria-labelledby="rotulo-pontualidade"></div></div>
+          <div class="criterio"><span id="rotulo-estrutura">Estrutura da clínica</span><div id="estrelas-estrutura" aria-labelledby="rotulo-estrutura"></div></div>
+        </div>
+
+        <div class="campo">
+          <label for="comentario">Comentário (opcional)</label>
+          <textarea class="input" id="comentario" maxlength="500" placeholder="Conte como foi sua experiência..."></textarea>
+        </div>
+
+        <div class="recomenda">
+          <span id="rotulo-recomenda">Você recomendaria este médico?</span>
+          <div class="recomenda-opcoes" role="group" aria-labelledby="rotulo-recomenda">
+            <button type="button" class="chip chip-ativo" data-recomenda="sim" aria-pressed="true">Sim</button>
+            <button type="button" class="chip" data-recomenda="nao" aria-pressed="false">Não</button>
+          </div>
+        </div>
+
+        <div class="acoes">
+          <button type="button" class="btn btn-outline" id="btn-pular">Pular</button>
+          <button type="submit" class="btn btn-primario" id="btn-enviar">Enviar avaliação</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card avaliacao-vazio" id="estado-vazio" hidden>
+      <h1 id="titulo-vazio"></h1>
+      <p id="texto-vazio"></p>
+      <a class="btn btn-primario" href="historico.html">Ver histórico</a>
+    </section>
+  </main>
+
+  <footer id="rodape"></footer>
+
+  <script src="js/data/dados-iniciais.js"></script>
+  <script src="js/utils/Storage.js"></script>
+  <script src="js/utils/Formatadores.js"></script>
+  <script src="js/utils/Validador.js"></script>
+  <script src="js/utils/Calendario.js"></script>
+  <script src="js/models/Usuario.js"></script>
+  <script src="js/models/Medico.js"></script>
+  <script src="js/models/Consulta.js"></script>
+  <script src="js/models/Avaliacao.js"></script>
+  <script src="js/services/AuthService.js"></script>
+  <script src="js/services/MedicoService.js"></script>
+  <script src="js/services/ConsultaService.js"></script>
+  <script src="js/services/AvaliacaoService.js"></script>
+  <script src="js/ui/Layout.js"></script>
+  <script src="js/ui/Toast.js"></script>
+  <script src="js/ui/Modal.js"></script>
+  <script src="js/ui/Estrelas.js"></script>
+  <script src="js/pages/avaliacao.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => AvaliacaoPage.iniciar());</script>
+</body>
+</html>

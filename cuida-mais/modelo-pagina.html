@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+  MODELO DE PÁGINA: copie este arquivo, troque os trechos em MAIÚSCULAS e apague este comentário.
+  A ordem dos scripts importa: data -> utils -> models -> services -> ui -> sua página.
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cuida+ | NOME DA PÁGINA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/SUAPAGINA.css">
+</head>
+<body>
+  <div id="cabecalho"></div>
+
+  <main>
+    <h1>TÍTULO DA PÁGINA</h1>
+    <!-- conteúdo da sua tela -->
+  </main>
+
+  <footer id="rodape"></footer>
+
+  <script src="js/data/dados-iniciais.js"></script>
+  <script src="js/utils/Storage.js"></script>
+  <script src="js/utils/Formatadores.js"></script>
+  <script src="js/utils/Validador.js"></script>
+  <script src="js/utils/Calendario.js"></script>
+  <script src="js/models/Usuario.js"></script>
+  <script src="js/models/Medico.js"></script>
+  <script src="js/models/Consulta.js"></script>
+  <script src="js/models/Avaliacao.js"></script>
+  <script src="js/services/AuthService.js"></script>
+  <script src="js/services/MedicoService.js"></script>
+  <script src="js/services/ConsultaService.js"></script>
+  <script src="js/services/AvaliacaoService.js"></script>
+  <script src="js/ui/Layout.js"></script>
+  <script src="js/ui/Toast.js"></script>
+  <script src="js/ui/Modal.js"></script>
+  <script src="js/ui/Estrelas.js"></script>
+  <script src="js/pages/SUAPAGINA.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => NomeDaPage.iniciar());</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+/* medicos.css: tela "Agendar consulta" */
+.filtros { display: flex; align-items: flex-end; gap: 16px; margin-top: 24px; padding: 20px; }
+.filtros .campo { flex: 1; min-width: 0; }
+.filtros .btn { flex-shrink: 0; }
+.filtros .btn-link { flex-shrink: 0; padding: 12px 4px; }
+
+.contador { margin: 24px 0 16px; font-weight: 500; }
+
+.grade-medicos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+.medico-card { display: flex; flex-direction: column; gap: 16px; }
+.medico-topo { display: flex; align-items: center; gap: 14px; }
+.medico-nota { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--gr); }
+.medico-rotulo { font-size: 13px; font-weight: 500; }
+.medico-horarios { display: flex; flex-wrap: wrap; gap: 8px; min-height: 30px; }
+.medico-horarios .chip { transition: background .15s, color .15s; }
+.medico-horarios button.chip:hover { background: var(--pri); color: var(--wh); }
+.medico-sem-horario { font-size: 13px; color: var(--gr); }
+.medico-card .btn { margin-top: auto; }
+
+.vazio { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 48px 24px; text-align: center; }
+.vazio h2 { font-size: 18px; }
+.vazio p { max-width: 420px; color: var(--gr); }
+
+@media (max-width: 1100px) { .grade-medicos { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 800px) {
+  .filtros { flex-wrap: wrap; }
+  .filtros .campo { flex: 1 1 100%; }
+}
+@media (max-width: 700px) { .grade-medicos { grid-template-columns: 1fr; } }

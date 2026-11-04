@@ -1,0 +1,37 @@
+/* avaliacao.css: tela "Avaliar consulta" */
+.avaliacao-main { display: flex; justify-content: center; align-items: flex-start; padding-top: 48px; padding-bottom: 64px; }
+
+.avaliacao-card { display: flex; flex-direction: column; gap: 24px; width: 100%; max-width: 760px; padding: 40px; border-radius: 16px; }
+.avaliacao-card h1 { font-size: 28px; }
+
+.consulta-resumo { display: flex; align-items: center; gap: 14px; padding: 16px; background: var(--bg); border-radius: var(--raio); }
+.consulta-resumo h3 { font-size: 16px; }
+.consulta-resumo p { font-size: 13px; color: var(--gr); }
+.consulta-resumo .avatar { width: 48px; height: 48px; font-size: 17px; }
+
+.avaliacao-form { display: flex; flex-direction: column; gap: 24px; }
+
+.bloco-nota { display: flex; flex-direction: column; gap: 12px; }
+.bloco-nota h2 { font-size: 16px; font-weight: 600; color: var(--tx); }
+.nota-geral { display: flex; align-items: center; gap: 16px; }
+.texto-nota { min-height: 24px; font-size: 16px; font-weight: 600; color: var(--pri); }
+
+.criterios { display: flex; flex-direction: column; gap: 14px; }
+.criterio { display: flex; align-items: center; justify-content: space-between; gap: 16px; font-weight: 500; font-size: 15px; }
+
+.recomenda { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-weight: 500; }
+.recomenda-opcoes { display: flex; gap: 8px; }
+.recomenda-opcoes .chip { padding: 8px 18px; font-size: 13px; }
+
+.acoes { display: flex; justify-content: flex-end; gap: 12px; }
+
+.avaliacao-vazio { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; max-width: 560px; padding: 48px 32px; text-align: center; }
+.avaliacao-vazio h1 { font-size: 24px; }
+.avaliacao-vazio p { color: var(--gr); }
+
+@media (max-width: 700px) {
+  .avaliacao-card { padding: 24px; }
+  .criterio { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .acoes { flex-direction: column-reverse; }
+  .acoes .btn { width: 100%; }
+}

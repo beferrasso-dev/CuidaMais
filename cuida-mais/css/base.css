@@ -1,0 +1,56 @@
+/* base.css: variáveis (cores do protótipo do Figma), reset e tipografia */
+:root {
+  --pri: #0E7C86;
+  --pri-esc: #0B6A73;
+  --dk: #0B3C49;
+  --bg: #F4F8FA;
+  --tx: #1F2A37;
+  --gr: #6B7280;
+  --bd: #E2E8F0;
+  --lt: #E6F4F5;
+  --wh: #FFFFFF;
+  --ok: #1B7F5C;
+  --ok-bg: #DCF5EA;
+  --erro: #B42318;
+  --erro-bg: #FDE2E2;
+  --info: #175CD3;
+  --info-bg: #E0EEFF;
+  --estrela: #F5B301;
+  --estrela-vazia: #D5DAE1;
+  --raio: 12px;
+  --raio-sm: 8px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--tx);
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main { flex: 1; width: 100%; padding: 40px 80px 48px; }
+
+h1 { font-size: 32px; font-weight: 700; line-height: 1.2; color: var(--dk); }
+h2 { font-size: 20px; font-weight: 700; color: var(--dk); }
+h3 { font-size: 17px; font-weight: 600; color: var(--dk); }
+.subtitulo { margin-top: 8px; font-size: 16px; color: var(--gr); }
+.texto-suave { color: var(--gr); }
+
+a { color: var(--pri); text-decoration: none; }
+button { font-family: inherit; }
+:focus-visible { outline: 2px solid var(--pri); outline-offset: 2px; }
+
+.visualmente-oculto {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap;
+}
+
+@media (max-width: 900px) { main { padding: 24px 20px 32px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+[hidden] { display: none !important; }

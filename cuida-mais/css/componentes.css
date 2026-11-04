@@ -1,0 +1,86 @@
+/* componentes.css: peças reutilizadas em todas as telas */
+
+/* ---------- Cabeçalho e rodapé (Layout.js) ---------- */
+.cabecalho { display: flex; align-items: center; justify-content: space-between; height: 72px; padding: 0 80px; background: var(--wh); border-bottom: 1px solid var(--bd); }
+.logo { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 700; color: var(--dk); }
+.logo-marca { width: 32px; height: 32px; border-radius: 50%; background: var(--pri); }
+.menu { display: flex; gap: 32px; }
+.menu a { font-weight: 500; color: var(--gr); }
+.menu a:hover { color: var(--pri); }
+.menu a.ativo { font-weight: 600; color: var(--pri); }
+.usuario { display: flex; align-items: center; gap: 12px; }
+.usuario-nome { font-weight: 500; }
+.avatar { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--pri); color: var(--wh); font-size: 14px; font-weight: 600; flex-shrink: 0; }
+.avatar-grande { width: 56px; height: 56px; font-size: 20px; }
+.btn-link { background: none; border: 0; color: var(--pri); font-weight: 600; font-size: 14px; cursor: pointer; }
+.btn-link:hover { text-decoration: underline; }
+.rodape { display: flex; justify-content: space-between; gap: 24px; padding: 20px 80px; background: var(--dk); color: var(--wh); font-size: 13px; font-weight: 500; }
+.rodape .esmaecido { color: #B8D4D8; font-weight: 400; }
+
+@media (max-width: 900px) {
+  .cabecalho { padding: 0 20px; }
+  .menu { display: none; }
+  .rodape { flex-direction: column; padding: 20px; }
+}
+
+/* ---------- Botões ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; border: 1px solid var(--pri); border-radius: var(--raio-sm); font-size: 14px; font-weight: 600; cursor: pointer; transition: background .15s; }
+.btn-primario { background: var(--pri); color: var(--wh); }
+.btn-primario:hover { background: var(--pri-esc); }
+.btn-outline { background: var(--wh); color: var(--pri); }
+.btn-outline:hover { background: var(--lt); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn-bloco { width: 100%; }
+
+/* ---------- Card, chip, badge ---------- */
+.card { background: var(--wh); border: 1px solid var(--bd); border-radius: var(--raio); padding: 24px; }
+
+.chip { display: inline-flex; align-items: center; padding: 6px 12px; border: 0; border-radius: 999px; background: var(--lt); color: var(--pri); font-size: 12px; font-weight: 500; }
+button.chip { cursor: pointer; }
+.chip-ativo { background: var(--pri); color: var(--wh); }
+
+.badge { display: inline-flex; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 500; }
+.badge-agendada { background: var(--info-bg); color: var(--info); }
+.badge-realizada { background: var(--ok-bg); color: var(--ok); }
+.badge-cancelada { background: var(--erro-bg); color: var(--erro); }
+
+/* ---------- Formulário ---------- */
+.campo { display: flex; flex-direction: column; gap: 6px; }
+.campo label { font-size: 13px; font-weight: 500; }
+.input { width: 100%; padding: 12px 14px; border: 1px solid var(--bd); border-radius: var(--raio-sm); background: var(--wh); color: var(--tx); font: inherit; }
+.input::placeholder { color: #8A94A3; }
+.input:focus { outline: 2px solid var(--pri); border-color: var(--pri); }
+textarea.input { min-height: 90px; resize: vertical; }
+.input:not(textarea) { height: 46px; }
+.campo-erro .input { border-color: var(--erro); }
+.msg-erro { font-size: 13px; color: var(--erro); }
+
+/* ---------- Tabela ---------- */
+.tabela-caixa { overflow: hidden; background: var(--wh); border: 1px solid var(--bd); border-radius: var(--raio); }
+.tabela { width: 100%; border-collapse: collapse; }
+.tabela th { padding: 14px 24px; background: #F8FAFC; text-align: left; font-size: 12px; font-weight: 600; color: var(--gr); }
+.tabela td { padding: 14px 24px; border-top: 1px solid var(--bd); vertical-align: middle; }
+
+/* ---------- Modal (Modal.js) ---------- */
+.modal-fundo { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(11, 60, 73, .55); }
+.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; padding: 32px; background: var(--wh); border-radius: 16px; }
+.modal-titulo { margin-bottom: 16px; font-size: 22px; font-weight: 700; color: var(--dk); }
+.modal-acoes { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; }
+
+/* ---------- Toast (Toast.js) ---------- */
+#toast-container { position: fixed; top: 88px; right: 24px; z-index: 200; display: flex; flex-direction: column; gap: 12px; }
+.toast { min-width: 240px; max-width: 360px; padding: 14px 18px; background: var(--wh); border: 1px solid var(--bd); border-left: 4px solid var(--info); border-radius: var(--raio-sm); font-weight: 500; }
+.toast-sucesso { border-left-color: var(--ok); }
+.toast-erro { border-left-color: var(--erro); }
+
+/* ---------- Divisor ---------- */
+.divisor { height: 1px; border: 0; background: var(--bd); }
+
+/* ---------- Estrelas (Estrelas.js) ---------- */
+.estrelas { display: inline-flex; gap: 3px; vertical-align: middle; line-height: 0; }
+.estrela { display: block; fill: var(--estrela-vazia); }
+.estrela-cheia { fill: var(--estrela); }
+.estrelas-input { display: inline-flex; gap: 6px; }
+.estrela-botao { padding: 2px; background: none; border: 0; border-radius: 6px; line-height: 0; cursor: pointer; }
+.estrela-botao svg { fill: var(--estrela-vazia); transition: fill .1s; }
+.estrela-botao.ativa svg { fill: var(--estrela); }
