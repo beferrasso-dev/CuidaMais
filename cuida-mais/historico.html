@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cuida+ | Histórico de consultas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/historico.css">
+</head>
+<body>
+  <div id="cabecalho"></div>
+
+  <main>
+    <h1>Histórico de consultas</h1>
+    <p class="subtitulo">Acompanhe suas consultas realizadas, canceladas e agendadas.</p>
+
+    <section class="resumo" id="resumo" aria-label="Resumo das consultas"></section>
+
+    <div class="barra-filtros">
+      <div class="filtros-status" id="filtros-status" role="group" aria-label="Filtrar por status">
+        <button type="button" class="chip chip-ativo" data-status="todas" aria-pressed="true">Todas</button>
+        <button type="button" class="chip" data-status="realizada" aria-pressed="false">Realizadas</button>
+        <button type="button" class="chip" data-status="cancelada" aria-pressed="false">Canceladas</button>
+        <button type="button" class="chip" data-status="agendada" aria-pressed="false">Agendadas</button>
+      </div>
+      <div class="busca">
+        <label class="visualmente-oculto" for="busca-medico">Buscar por médico</label>
+        <input class="input" type="search" id="busca-medico" placeholder="Buscar por médico" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="tabela-caixa tabela-rolagem">
+      <table class="tabela">
+        <caption class="visualmente-oculto">Consultas do usuário</caption>
+        <thead>
+          <tr>
+            <th scope="col">Data</th>
+            <th scope="col">Médico</th>
+            <th scope="col">Especialidade</th>
+            <th scope="col">Status</th>
+            <th scope="col">Avaliação</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody id="corpo-tabela"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer id="rodape"></footer>
+
+  <script src="js/data/dados-iniciais.js"></script>
+  <script src="js/utils/Storage.js"></script>
+  <script src="js/utils/Formatadores.js"></script>
+  <script src="js/utils/Validador.js"></script>
+  <script src="js/utils/Calendario.js"></script>
+  <script src="js/models/Usuario.js"></script>
+  <script src="js/models/Medico.js"></script>
+  <script src="js/models/Consulta.js"></script>
+  <script src="js/models/Avaliacao.js"></script>
+  <script src="js/services/AuthService.js"></script>
+  <script src="js/services/MedicoService.js"></script>
+  <script src="js/services/ConsultaService.js"></script>
+  <script src="js/services/AvaliacaoService.js"></script>
+  <script src="js/ui/Layout.js"></script>
+  <script src="js/ui/Toast.js"></script>
+  <script src="js/ui/Modal.js"></script>
+  <script src="js/ui/Estrelas.js"></script>
+  <script src="js/pages/historico.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => HistoricoPage.iniciar());</script>
+</body>
+</html>
