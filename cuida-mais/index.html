@@ -5,19 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CuidaMais - Login</title>
+    <link rel="stylesheet" href="css/login.css">
 
 </head>
 
 <body>
-    <form id="form-login">
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
-        <button type="submit">Entrar</button>
-        <p id="mensagem-erro"></p>
-        <p> Ainda não possui uma conta? <a href="cadastro.html">Cadastre-se</a></p>
-    </form>
+    <main>
+        <section class="apresentacao">
+            <div>
+                <div class="marca">
+                    <span class="icone-marca"></span>
+                    <span>Cuida+</span>
+                </div>
+                <h2>Cuidar de você começa com um agendamento simples</h2>
+                <p>Escolha seu médico, marque o melhor horário e acompanhe todas as suas consultas em um só lugar.</p>
+                <ul>
+                    <li>Médicos de várias especialidades</li>
+                    <li>Confirmação rápida do agendamento</li>
+                    <li>Histórico e avaliação das consultas</li>
+                </ul>
+            </div>
+
+        </section>
+        <section class="login">
+            <form id="form-login">
+                <h1>Bem-vindo de volta!</h1>
+                <p>Entre para agendar e acompanhar suas consultas.</p>
+                <label for="email">E-mail:</label>
+                <input type="text" id="email" name="email" placeholder="Digite seu e-mail" required>
+                <label for="senha">Senha:</label>
+                <div class="campo-senha">
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                    <button type="button" id="mostrar-senha">Mostrar</button>
+                </div>
+                <a href="#" id="link-recuperar-senha">Esqueceu sua senha?</a>
+                <button type="submit">Entrar</button>
+                <p id="mensagem-erro"></p>
+                <p> Ainda não possui uma conta? <a href="cadastro.html" id="link-cadastro">Cadastre-se</a></p>
+            </form>
+        </section>
+    </main>
     <script src="js/data/dados-iniciais.js"></script>
     <script src="js/utils/Storage.js"></script>
     <script src="js/utils/Validador.js"></script>
@@ -26,6 +53,7 @@
     <script>
         Storage.iniciar();
     </script>
+
 
 
 </body>

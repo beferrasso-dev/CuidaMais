@@ -1,0 +1,156 @@
+main {
+    display: flex;
+    min-height: 100vh;
+}
+
+section {
+    flex: 1;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+}
+
+.apresentacao {
+    background-color: #0D7C87;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 40px;
+}
+
+.apresentacao h2 {
+    font-size: 32px;
+    color: white;
+}
+
+.apresentacao p {
+    font-size: 16px;
+    color: #E0EAE8;
+    line-height: 1.6;
+}
+
+.apresentacao ul {
+    padding-left: 24px;
+    margin-top: 24px;
+}
+
+.apresentacao li {
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+.apresentacao div {
+    max-width: 450px;
+}
+
+.apresentacao h2,
+.apresentacao p {
+    text-align: left;
+}
+
+.login {
+    background-color: #FFFFFF;
+    color: #263238;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+button {
+    padding: 12px;
+    background-color: #0D7C87;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 400px;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #666666;
+    border-radius: 6px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 28px;
+    color: #0D7C87;
+    margin-bottom: 8px;
+}
+
+p {
+    font-size: 14px;
+    color: #666666;
+}
+
+h1,
+p {
+    text-align: center;
+}
+
+input:focus {
+    outline: 2px solid #0D7C87;
+    border-color: #0D7C87;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#link-recuperar-senha {
+    color: #0D7C87;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.campo-senha {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.campo-senha input {
+    flex: 1;
+    min-width: 0;
+}
+
+.campo-senha button {
+    width: auto;
+    white-space: nowrap;
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+}
+
+.icone-marca {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+}
