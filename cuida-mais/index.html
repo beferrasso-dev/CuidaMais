@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CuidaMais - Login</title>
+
+</head>
+
+<body>
+    <form id="form-login">
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+        <button type="submit">Entrar</button>
+        <p id="mensagem-erro"></p>
+        <p> Ainda não possui uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+    </form>
+    <script src="js/data/dados-iniciais.js"></script>
+    <script src="js/utils/Storage.js"></script>
+    <script src="js/utils/Validador.js"></script>
+    <script src="js/services/AuthService.js"></script>
+    <script src="js/pages/LoginPage.js"></script>
+    <script>
+        Storage.iniciar();
+    </script>
+
+
+</body>
+
+</html>
