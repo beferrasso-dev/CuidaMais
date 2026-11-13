@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirmar agendamento · Cuida+</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/agenda.css">
+</head>
+<body>
+
+  <!-- ===== Cabeçalho ===== -->
+  <header class="cabecalho">
+    <div class="cabecalho__conteudo">
+      <a class="logo" href="medicos.html" aria-label="Cuida+ - página inicial">
+        <span class="logo__icone" aria-hidden="true"></span>
+        <span class="logo__texto">Cuida+</span>
+      </a>
+
+      <nav class="menu" aria-label="Navegação principal">
+        <a class="menu__link" href="medicos.html">Agendar consulta</a>
+        <a class="menu__link menu__link--ativo" href="agenda.html" aria-current="page">Minha agenda</a>
+        <a class="menu__link" href="avaliacao.html">Avaliar consulta</a>
+        <a class="menu__link" href="historico.html">Histórico</a>
+      </nav>
+
+      <div class="usuario">
+        <span class="avatar avatar--pequeno" id="usuario-avatar" aria-hidden="true"></span>
+        <span class="usuario__nome" id="usuario-nome"></span>
+        <a class="usuario__sair" id="btn-sair" href="index.html">Sair</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Conteúdo principal ===== -->
+  <main class="agenda">
+    <h1 class="agenda__titulo">Confirmar agendamento</h1>
+    <p class="agenda__subtitulo">Escolha a data e o horário e confira o resumo antes de confirmar.</p>
+
+    <div class="agenda__layout">
+
+      <div class="agenda__principal">
+
+        <!-- Cartão do médico (preenchido por AgendaPage.#renderizarMedico) -->
+        <section class="cartao cartao-medico" id="cartao-medico" aria-label="Médico selecionado"></section>
+
+        <!-- Calendário e horários -->
+        <section class="cartao cartao--calendario" aria-labelledby="titulo-escolha">
+          <h2 class="cartao__titulo" id="titulo-escolha">Escolha a data e o horário</h2>
+
+          <div class="escolha">
+            <div class="calendario">
+              <div class="calendario__cabecalho">
+                <h3 class="calendario__titulo" id="calendario-titulo" aria-live="polite"></h3>
+                <div class="calendario__navegacao">
+                  <button class="calendario__seta" id="btn-mes-anterior" type="button" aria-label="Mês anterior">&#8249;</button>
+                  <button class="calendario__seta" id="btn-proximo-mes" type="button" aria-label="Próximo mês">&#8250;</button>
+                </div>
+              </div>
+
+              <div class="calendario__semana" id="calendario-dias-semana"></div>
+              <div class="calendario__grade" id="calendario-grade"></div>
+            </div>
+
+            <div class="horarios">
+              <h3 class="horarios__titulo" id="horarios-titulo"></h3>
+              <div class="horarios__lista" id="horarios-lista"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Resumo da consulta -->
+      <aside class="cartao resumo" aria-labelledby="titulo-resumo">
+        <h2 class="cartao__titulo resumo__titulo" id="titulo-resumo">Resumo da consulta</h2>
+
+        <dl class="resumo__lista">
+          <div class="resumo__linha"><dt>Médico</dt><dd id="resumo-medico"></dd></div>
+          <div class="resumo__linha"><dt>Especialidade</dt><dd id="resumo-especialidade"></dd></div>
+          <div class="resumo__linha"><dt>Data</dt><dd id="resumo-data"></dd></div>
+          <div class="resumo__linha"><dt>Horário</dt><dd id="resumo-horario"></dd></div>
+          <div class="resumo__linha"><dt>Local</dt><dd id="resumo-local"></dd></div>
+        </dl>
+
+        <div class="resumo__valor">
+          <div>
+            <span class="resumo__valor-rotulo">Valor da consulta</span>
+            <span class="resumo__valor-detalhe">Pagamento na clínica</span>
+          </div>
+          <strong class="resumo__valor-numero" id="resumo-valor"></strong>
+        </div>
+
+        <div class="resumo__bloco resumo__bloco--divisor">
+          <span class="resumo__rotulo" id="rotulo-modalidade">Modalidade</span>
+          <div class="chips" id="modalidades" role="group" aria-labelledby="rotulo-modalidade">
+            <button class="chip chip--ativo" type="button" data-modalidade="presencial" aria-pressed="true">Presencial</button>
+            <button class="chip" type="button" data-modalidade="telemedicina" aria-pressed="false">Telemedicina</button>
+          </div>
+        </div>
+
+        <div class="resumo__bloco">
+          <label class="resumo__rotulo" for="observacoes">Observações (opcional)</label>
+          <textarea class="campo-texto" id="observacoes" rows="3" maxlength="300"
+                    placeholder="Descreva o motivo da consulta..."></textarea>
+        </div>
+
+        <p class="mensagem" id="mensagem" role="status" aria-live="polite"></p>
+
+        <button class="botao botao--primario" id="btn-confirmar" type="button">Confirmar agendamento</button>
+        <button class="botao botao--contorno" id="btn-cancelar" type="button">Cancelar</button>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- ===== Rodapé ===== -->
+  <footer class="rodape">
+    <div class="rodape__conteudo">
+      <span class="rodape__direitos">© 2026 Cuida+ · Desafio Extensionista</span>
+      <span class="rodape__equipe">Integrantes: Bernardo Carodo Ferrasso da Silva , Érica Victória da Rosa Knevitz , Pedro Otavio Notari da Silva</span>
+    </div>
+  </footer>
+
+  <!-- Scripts do projeto (clássicos, sem módulos). A ordem importa: dados -> utilitários -> modelos -> serviços -> página -->
+  <script src="js/data/dados-iniciais.js"></script>
+  <script src="js/utils/Formatadores.js"></script>
+  <script src="js/utils/Storage.js"></script>
+  <script src="js/models/Medico.js"></script>
+  <script src="js/models/Consulta.js"></script>
+  <script src="js/services/AuthService.js"></script>
+  <script src="js/services/MedicoService.js"></script>
+  <script src="js/services/ConsultaService.js"></script>
+  <script src="js/utils/Calendario.js"></script>
+  <script src="js/pages/agenda.js"></script>
+</body>
+</html>
