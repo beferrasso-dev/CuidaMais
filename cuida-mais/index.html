@@ -5,12 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CuidaMais - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/componentes.css">
     <link rel="stylesheet" href="css/login.css">
-
 </head>
 
 <body>
-    <main>
+    <main class="pagina-login">
         <section class="apresentacao">
             <div>
                 <div class="marca">
@@ -28,34 +32,38 @@
 
         </section>
         <section class="login">
-            <form id="form-login">
+            <form id="form-login" novalidate>
                 <h1>Bem-vindo de volta!</h1>
                 <p>Entre para agendar e acompanhar suas consultas.</p>
                 <label for="email">E-mail:</label>
-                <input type="text" id="email" name="email" placeholder="Digite seu e-mail" required>
+                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" autocomplete="email" required>
                 <label for="senha">Senha:</label>
                 <div class="campo-senha">
-                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
-                    <button type="button" id="mostrar-senha">Mostrar</button>
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" autocomplete="current-password" required>
+                    <button type="button" id="mostrar-senha" aria-label="Mostrar ou ocultar a senha">Mostrar</button>
                 </div>
-                <a href="#" id="link-recuperar-senha">Esqueceu sua senha?</a>
+                <div class="opcoes-login">
+                    <label class="lembrar"><input type="checkbox" id="lembrar"> Lembrar de mim</label>
+                    <a href="#" id="link-recuperar-senha">Esqueceu sua senha?</a>
+                </div>
+                <p id="mensagem-erro" role="alert"></p>
                 <button type="submit">Entrar</button>
-                <p id="mensagem-erro"></p>
-                <p> Ainda não possui uma conta? <a href="cadastro.html" id="link-cadastro">Cadastre-se</a></p>
+                <p> Ainda não possui uma conta? <a href="#" id="link-cadastro">Cadastre-se</a></p>
             </form>
         </section>
     </main>
+
+    <footer id="rodape"></footer>
+
     <script src="js/data/dados-iniciais.js"></script>
     <script src="js/utils/Storage.js"></script>
+    <script src="js/utils/Formatadores.js"></script>
     <script src="js/utils/Validador.js"></script>
     <script src="js/services/AuthService.js"></script>
-    <script src="js/pages/LoginPage.js"></script>
-    <script>
-        Storage.iniciar();
-    </script>
-
-
-
+    <script src="js/ui/Layout.js"></script>
+    <script src="js/ui/Toast.js"></script>
+    <script src="js/ui/Modal.js"></script>
+    <script src="js/pages/login.js"></script>
 </body>
 
 </html>

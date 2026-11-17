@@ -1,20 +1,15 @@
-main {
+.pagina-login {
     display: flex;
-    min-height: 100vh;
+    flex: 1;
+    padding: 0;
 }
 
-section {
+.pagina-login section {
     flex: 1;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-
-}
-
-.apresentacao {
-    background-color: #0D7C87;
+.pagina-login .apresentacao {
+    background-color: var(--pri);
     color: white;
     display: flex;
     justify-content: flex-start;
@@ -22,56 +17,64 @@ body {
     padding: 40px;
 }
 
-.apresentacao h2 {
+.pagina-login .apresentacao h2 {
     font-size: 32px;
     color: white;
+    margin-bottom: 16px;   
 }
 
-.apresentacao p {
+.pagina-login .apresentacao p {
     font-size: 16px;
     color: #E0EAE8;
     line-height: 1.6;
 }
 
-.apresentacao ul {
+.pagina-login .apresentacao ul {
     padding-left: 24px;
     margin-top: 24px;
 }
 
-.apresentacao li {
+.pagina-login .apresentacao li {
     font-size: 16px;
     margin-bottom: 24px;
 }
 
-.apresentacao div {
+.pagina-login .apresentacao div {
     max-width: 450px;
 }
 
-.apresentacao h2,
-.apresentacao p {
+.pagina-login .apresentacao h2,
+.pagina-login .apresentacao p {
     text-align: left;
 }
 
-.login {
+.pagina-login .login {
     background-color: #FFFFFF;
-    color: #263238;
+    color: var(--tx);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 16px;
+    padding: 24px;
 }
 
-button {
+.pagina-login button {
     padding: 12px;
-    background-color: #0D7C87;
+    background-color: var(--pri);
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
+    font: inherit;
+    font-weight: 600;
 }
 
-form {
+.pagina-login button:hover {
+    background-color: var(--pri-esc);
+}
+
+.pagina-login form {
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -79,66 +82,78 @@ form {
     max-width: 400px;
 }
 
-input {
+.pagina-login input {
     padding: 12px;
-    border: 1px solid #666666;
-    border-radius: 6px;
+    border: 1px solid var(--bd);
+    border-radius: 8px;
+    font: inherit;
+    color: var(--tx);
 }
 
-label {
+.pagina-login label {
     font-size: 14px;
     font-weight: bold;
 }
 
-h1 {
+.pagina-login h1 {
     font-size: 28px;
-    color: #0D7C87;
+    color: var(--dk);
     margin-bottom: 8px;
 }
 
-p {
+.pagina-login p {
     font-size: 14px;
-    color: #666666;
+    color: var(--gr);
 }
 
-h1,
-p {
+.pagina-login h1,
+.pagina-login p {
     text-align: center;
 }
 
-input:focus {
-    outline: 2px solid #0D7C87;
-    border-color: #0D7C87;
+.pagina-login input:focus {
+    outline: 2px solid var(--pri);
+    border-color: var(--pri);
 }
 
-input {
+.pagina-login input {
     width: 100%;
     box-sizing: border-box;
 }
 
-#link-recuperar-senha {
-    color: #0D7C87;
+.pagina-login a {
+    color: var(--pri);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.pagina-login a:hover {
+    text-decoration: underline;
+}
+
+.pagina-login #link-recuperar-senha {
+    color: var(--pri);
     font-size: 14px;
     text-decoration: none;
 }
 
-.campo-senha {
+.pagina-login .campo-senha {
     display: flex;
     gap: 8px;
     align-items: center;
 }
 
-.campo-senha input {
+.pagina-login .campo-senha input {
     flex: 1;
     min-width: 0;
 }
 
-.campo-senha button {
+.pagina-login .campo-senha button {
     width: auto;
     white-space: nowrap;
 }
 
-.marca {
+.pagina-login .marca {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -148,9 +163,66 @@ input {
     color: white;
 }
 
-.icone-marca {
+.pagina-login .icone-marca {
     width: 30px;
     height: 30px;
     background-color: white;
     border-radius: 50%;
+}
+
+.pagina-login .opcoes-login {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.pagina-login .lembrar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: normal;
+    color: var(--gr);
+    cursor: pointer;
+}
+
+.pagina-login .lembrar input {
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    accent-color: var(--pri);
+}
+
+.pagina-login #mensagem-erro {
+    margin: 0;
+    padding: 10px 12px;
+    background-color: var(--erro-bg);
+    color: var(--erro);
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.pagina-login #mensagem-erro:empty {
+    display: none;
+}
+
+.cadastro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+@media (max-width: 900px) {
+    .pagina-login {
+        flex-direction: column;
+    }
+
+    .pagina-login .apresentacao {
+        padding: 24px;
+    }
+
+    .pagina-login .apresentacao p,
+    .pagina-login .apresentacao ul {
+        display: none;
+    }
 }

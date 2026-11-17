@@ -1,9 +1,15 @@
 class AuthService {
 
+    static normalizarEmail(email) {
+        return String(email || "").trim().toLowerCase();
+    }
+
     static login(email, senha) {
-        const usuarios = Storage.ler(Storage.CHAVES.USUARIOS);
+        Storage.iniciar();
+        const usuarios = Storage.ler(Storage.CHAVES.USUARIOS, []);
+        const emailNormalizado = AuthService.normalizarEmail(email);
         const usuario = usuarios.find(u => {
-            return u.email === email && u.senha === senha;
+            return AuthService.normalizarEmail(u.email) === emailNormalizado && u.senha === senha;
         })
 
         if (usuario === undefined) {
@@ -11,7 +17,8 @@ class AuthService {
         }
         const sessao = {
             id: usuario.id,
-            nome: usuario.nome
+            nome: usuario.nome,
+            email: usuario.email   
         }
         Storage.salvarSessao(sessao);
         return usuario;
@@ -34,15 +41,29 @@ class AuthService {
     }
 
     static cadastrar(dados) {
-        const usuarios = Storage.ler(Storage.CHAVES.USUARIOS);
-        const usuario = usuarios.find(u => u.email === dados.email);
-        if (usuario !== undefined) {
-            return null;
+        if (!Validador.obrigatorio(dados.nome)) {
+            throw new Error("Informe seu nome.");
         }
+        if (!Validador.email(dados.email)) {
+            throw new Error("Informe um e-mail válido.");
+        }
+        if (!Validador.senhaMinima(dados.senha, 6)) {
+            throw new Error("A senha precisa ter pelo menos 6 caracteres.");
+        }
+
+        Storage.iniciar();
+        const usuarios = Storage.ler(Storage.CHAVES.USUARIOS, []);
+        const emailNormalizado = AuthService.normalizarEmail(dados.email);
+        const usuario = usuarios.find(u => AuthService.normalizarEmail(u.email) === emailNormalizado);
+        if (usuario !== undefined) {
+            throw new Error("Já existe uma conta com este e-mail.");
+        }
+
+        const ids = usuarios.map(u => u.id);
         const novoUsuario = {
-            id: Math.max(...usuarios.map(u => u.id)) + 1,
-            nome: dados.nome,
-            email: dados.email,
+            id: ids.length > 0 ? Math.max(...ids) + 1 : 1,
+            nome: dados.nome.trim(),
+            email: emailNormalizado,
             senha: dados.senha
         }
         usuarios.push(novoUsuario);

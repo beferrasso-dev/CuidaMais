@@ -7,12 +7,17 @@ class Validador {
     }
 
     static email(v) {
-        const padrao = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return padrao.test(v);
+        if (typeof v !== "string") {
+            return false;
+        }
+        const padrao = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        return padrao.test(v.trim());
     }
 
-    static senhaMinima(v, n) {
+    static senhaMinima(v, n = 6) {
+        if (typeof v !== "string") {
+            return false;
+        }
         return v.length >= n;
-
     }
 }
