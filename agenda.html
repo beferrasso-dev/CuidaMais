@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirmar agendamento · Cuida+</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CORREÇÃO: agora carrega também os estilos comuns do site (cabeçalho, rodapé, janelas, avisos).
+       O agenda.css fica só com o que é desta tela. -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/agenda.css">
+</head>
+<body>
+
+  <!-- ===== Cabeçalho =====
+       CORREÇÃO: era escrito à mão aqui. Agora o Layout.iniciar('agenda') desenha o mesmo
+       cabeçalho de todas as telas (menu, nome do usuário e botão Sair). -->
+  <div id="cabecalho"></div>
+
+  <!-- ===== Conteúdo principal ===== -->
+  <main class="agenda">
+    <h1 class="agenda__titulo">Confirmar agendamento</h1>
+    <p class="agenda__subtitulo">Escolha a data e o horário e confira o resumo antes de confirmar.</p>
+
+    <!-- CORREÇÃO: o bloco inteiro ficou dentro de #agenda-conteudo, que começa escondido e só
+         aparece quando há médico válido. Sem médico, aparece o #agenda-vazio (mais abaixo). -->
+    <div class="agenda__layout" id="agenda-conteudo" hidden>
+
+      <div class="agenda__principal">
+
+        <!-- Cartão do médico (preenchido por AgendaPage.#renderizarMedico) -->
+        <section class="cartao cartao-medico" id="cartao-medico" aria-label="Médico selecionado"></section>
+
+        <!-- Calendário e horários -->
+        <section class="cartao cartao--calendario" aria-labelledby="titulo-escolha">
+          <h2 class="cartao__titulo" id="titulo-escolha">Escolha a data e o horário</h2>
+
+          <div class="escolha">
+            <div class="calendario">
+              <div class="calendario__cabecalho">
+                <h3 class="calendario__titulo" id="calendario-titulo" aria-live="polite"></h3>
+                <div class="calendario__navegacao">
+                  <button class="calendario__seta" id="btn-mes-anterior" type="button" aria-label="Mês anterior">&#8249;</button>
+                  <button class="calendario__seta" id="btn-proximo-mes" type="button" aria-label="Próximo mês">&#8250;</button>
+                </div>
+              </div>
+
+              <div class="calendario__semana" id="calendario-dias-semana"></div>
+              <div class="calendario__grade" id="calendario-grade"></div>
+            </div>
+
+            <div class="horarios">
+              <h3 class="horarios__titulo" id="horarios-titulo"></h3>
+              <div class="horarios__lista" id="horarios-lista"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Resumo da consulta -->
+      <aside class="cartao resumo" aria-labelledby="titulo-resumo">
+        <h2 class="cartao__titulo resumo__titulo" id="titulo-resumo">Resumo da consulta</h2>
+
+        <dl class="resumo__lista">
+          <div class="resumo__linha"><dt>Médico</dt><dd id="resumo-medico"></dd></div>
+          <div class="resumo__linha"><dt>Especialidade</dt><dd id="resumo-especialidade"></dd></div>
+          <div class="resumo__linha"><dt>Data</dt><dd id="resumo-data"></dd></div>
+          <div class="resumo__linha"><dt>Horário</dt><dd id="resumo-horario"></dd></div>
+          <div class="resumo__linha"><dt>Local</dt><dd id="resumo-local"></dd></div>
+        </dl>
+
+        <div class="resumo__valor">
+          <div>
+            <span class="resumo__valor-rotulo">Valor da consulta</span>
+            <!-- CORREÇÃO: ganhou um id, porque o texto agora muda conforme a modalidade -->
+            <span class="resumo__valor-detalhe" id="resumo-pagamento">Pagamento na clínica</span>
+          </div>
+          <strong class="resumo__valor-numero" id="resumo-valor"></strong>
+        </div>
+
+        <div class="resumo__bloco resumo__bloco--divisor">
+          <span class="resumo__rotulo" id="rotulo-modalidade">Modalidade</span>
+          <div class="chips" id="modalidades" role="group" aria-labelledby="rotulo-modalidade">
+            <button class="chip chip--ativo" type="button" data-modalidade="presencial" aria-pressed="true">Presencial</button>
+            <button class="chip" type="button" data-modalidade="telemedicina" aria-pressed="false">Telemedicina</button>
+          </div>
+        </div>
+
+        <div class="resumo__bloco">
+          <label class="resumo__rotulo" for="observacoes">Observações (opcional)</label>
+          <textarea class="campo-texto" id="observacoes" rows="3" maxlength="300"
+                    placeholder="Descreva o motivo da consulta..."></textarea>
+        </div>
+
+        <p class="mensagem" id="mensagem" role="status" aria-live="polite"></p>
+
+        <button class="botao botao--primario" id="btn-confirmar" type="button">Confirmar agendamento</button>
+        <button class="botao botao--contorno" id="btn-cancelar" type="button">Cancelar</button>
+      </aside>
+
+    </div>
+
+    <!-- NOVO: tela para quando não há médico na URL (ex.: clique em "Minha agenda") ou o médico não existe.
+         Os textos e a lista de próximas consultas são preenchidos por AgendaPage.#mostrarSemMedico. -->
+    <section class="cartao agenda-vazio" id="agenda-vazio" hidden>
+      <h2 class="agenda-vazio__titulo" id="vazio-titulo"></h2>
+      <p class="agenda-vazio__texto" id="vazio-texto"></p>
+      <a class="botao botao--primario agenda-vazio__botao" href="medicos.html">Ver médicos</a>
+      <div class="agenda-vazio__proximas" id="vazio-proximas"></div>
+    </section>
+  </main>
+
+  <!-- ===== Rodapé =====
+       CORREÇÃO: era escrito à mão (e com um espaço antes de cada vírgula). Agora o Layout desenha o
+       rodapé com os nomes de Layout.INTEGRANTES, o mesmo em todas as telas. -->
+  <footer id="rodape"></footer>
+
+  <!-- Scripts do projeto (clássicos, sem módulos). A ordem importa: dados -> utilitários -> modelos -> serviços -> interface -> página.
+       CORREÇÃO: lista completa, igual à do modelo-pagina.html. Antes faltavam Usuario.js, Validador.js, Avaliacao.js,
+       AvaliacaoService.js, Layout.js, Toast.js, Modal.js e Estrelas.js. -->
+  <script src="js/data/dados-iniciais.js"></script>
+  <script src="js/utils/Storage.js"></script>
+  <script src="js/utils/Formatadores.js"></script>
+  <script src="js/utils/Validador.js"></script>
+  <script src="js/utils/Calendario.js"></script>
+  <script src="js/models/Usuario.js"></script>
+  <script src="js/models/Medico.js"></script>
+  <script src="js/models/Consulta.js"></script>
+  <script src="js/models/Avaliacao.js"></script>
+  <script src="js/services/AuthService.js"></script>
+  <script src="js/services/MedicoService.js"></script>
+  <script src="js/services/ConsultaService.js"></script>
+  <script src="js/services/AvaliacaoService.js"></script>
+  <script src="js/ui/Layout.js"></script>
+  <script src="js/ui/Toast.js"></script>
+  <script src="js/ui/Modal.js"></script>
+  <script src="js/ui/Estrelas.js"></script>
+  <script src="js/pages/agenda.js"></script>
+</body>
+</html>

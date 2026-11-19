@@ -1,0 +1,571 @@
+/* ==========================================================================
+   agenda.css  ·  Página "Confirmar agendamento"
+   Organização (a mesma de antes):
+     1. Variáveis
+     2. (removida) Cabeçalho e rodapé
+     3. Componentes da página (avatar, cartão, botões, chips, campos)
+     4. Layout da página
+     5. Cartão do médico
+     6. Calendário e horários
+     7. Resumo da consulta
+     8. Tela "escolha um médico"
+     9. Responsivo
+
+   O que mudou em relação à versão original (veja também LEIA-ME-ALTERACOES.md):
+   - CORREÇÃO: saíram as regras de body, cabeçalho e rodapé. Agora vêm do base.css, do
+     componentes.css e do Layout, iguais às outras telas.
+   - CORREÇÃO: as regras de componentes (.avatar, .chip, .botao...) começam com ".agenda".
+     Antes, .avatar e .chip também mudavam o cabeçalho e as janelas do site (o componentes.css
+     tem classes com o mesmo nome).
+   - CORREÇÃO: as cores viram apelidos das cores do site (var(--pri) etc.), e os tamanhos de
+     fonte e de botões foram alinhados com as outras telas.
+   ========================================================================== */
+
+/* 1. Variáveis ----------------------------------------------------------- */
+:root {
+  /* CORREÇÃO: mesmos nomes de antes, mas apontando para as cores do base.css (eram quase iguais) */
+  --cor-primaria: var(--pri);
+  --cor-primaria-escura: var(--pri-esc);
+  --cor-primaria-clara: var(--lt);
+  --cor-titulo: var(--dk);
+  --cor-texto: var(--tx);
+  --cor-texto-suave: var(--gr);
+  --cor-texto-desabilitado: #b6bdc8;
+  --cor-borda: var(--bd);
+  --cor-fundo: #f8fafc;
+  --cor-superficie: var(--wh);
+  --cor-avatar: #2f6fde;
+  --cor-estrela: var(--estrela);
+  --cor-erro: var(--erro);
+  --cor-sucesso: var(--ok);
+
+  --raio-cartao: 12px;
+  --raio-controle: 8px;
+  /* CORREÇÃO: 420px, como no protótipo do Figma (era 335px) */
+  --largura-resumo: 420px;
+}
+
+/* 3. Componentes da página ----------------------------------------------- */
+.agenda button,
+.agenda textarea {
+  font: inherit;
+}
+
+.agenda .avatar {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #ffffff;
+  border-radius: 50%;
+}
+
+.agenda .avatar--grande {
+  width: 64px;
+  height: 64px;
+  font-size: 22px;
+  background: var(--cor-avatar);
+}
+
+.cartao {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-cartao);
+}
+
+.cartao__titulo {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--cor-titulo);
+}
+
+.agenda .botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 46px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--cor-primaria);
+  border-radius: var(--raio-controle);
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.agenda .botao--primario {
+  color: #ffffff;
+  background: var(--cor-primaria);
+}
+
+.agenda .botao--primario:hover:not(:disabled) {
+  background: var(--cor-primaria-escura);
+}
+
+.agenda .botao--contorno {
+  color: var(--cor-primaria);
+  background: var(--cor-superficie);
+}
+
+.agenda .botao--contorno:hover {
+  background: var(--cor-primaria-clara);
+}
+
+.agenda .botao:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.agenda .chips {
+  display: flex;
+  gap: 8px;
+}
+
+.agenda .chip {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cor-primaria);
+  cursor: pointer;
+  background: var(--cor-primaria-clara);
+  border: 0;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.agenda .chip--ativo {
+  color: #ffffff;
+  background: var(--cor-primaria);
+}
+
+.agenda .campo-texto {
+  width: 100%;
+  height: 90px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--cor-texto);
+  resize: none;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-controle);
+}
+
+.agenda .campo-texto::placeholder {
+  color: #8a94a3;
+}
+
+.agenda .mensagem {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.agenda .mensagem:not(:empty) {
+  margin-bottom: 10px;
+}
+
+.agenda .mensagem--erro {
+  color: var(--cor-erro);
+}
+
+.agenda .mensagem--sucesso {
+  color: var(--cor-sucesso);
+}
+
+/* 4. Layout da página ---------------------------------------------------- */
+/* CORREÇÃO: saíram o max-width e o padding próprios do .agenda. O espaçamento da página vem
+   do base.css (main), igual às outras telas. */
+
+.agenda__titulo {
+  font-size: 32px; /* CORREÇÃO: era 26px; as outras telas usam 32px */
+  font-weight: 700;
+  color: var(--cor-titulo);
+}
+
+.agenda__subtitulo {
+  margin-top: 8px;
+  font-size: 16px; /* CORREÇÃO: era 13px */
+  color: var(--cor-texto-suave);
+}
+
+.agenda__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--largura-resumo);
+  gap: 24px;
+  align-items: start;
+  margin-top: 24px;
+}
+
+.agenda__principal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* 5. Cartão do médico ---------------------------------------------------- */
+.cartao-medico {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+}
+
+.cartao-medico__nome {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--cor-titulo);
+}
+
+.cartao-medico__detalhe {
+  margin-top: 2px;
+  font-size: 14px;
+  color: var(--cor-texto-suave);
+}
+
+.cartao-medico__avaliacao {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--cor-texto-suave);
+}
+
+.estrelas {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--cor-estrela);
+}
+
+/* NOVO: estrelas que passam da nota ficam cinza */
+.estrela--vazia {
+  color: var(--estrela-vazia);
+}
+
+/* 6. Calendário e horários ----------------------------------------------- */
+.cartao--calendario {
+  padding: 28px;
+}
+
+.escolha {
+  display: grid;
+  grid-template-columns: minmax(300px, 440px) minmax(0, 1fr);
+  gap: 48px;
+  margin-top: 20px;
+}
+
+.calendario__cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.calendario__titulo,
+.horarios__titulo {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--cor-titulo);
+}
+
+.calendario__navegacao {
+  display: flex;
+  gap: 8px;
+}
+
+.calendario__seta {
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--cor-texto);
+  cursor: pointer;
+  background: none;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-controle);
+}
+
+.calendario__seta:hover:not(:disabled) {
+  background: var(--cor-primaria-clara);
+}
+
+.calendario__seta:disabled {
+  color: var(--cor-texto-desabilitado);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.calendario__semana,
+.calendario__grade {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-items: center;
+}
+
+.calendario__semana {
+  margin-bottom: 6px;
+}
+
+.calendario__dia-semana {
+  font-size: 13px;
+  line-height: 32px;
+  color: var(--cor-texto-suave);
+}
+
+.calendario__grade {
+  row-gap: 6px;
+}
+
+.calendario__dia,
+.calendario__vazio {
+  width: 100%;
+  max-width: 56px;
+  height: 40px;
+}
+
+.calendario__dia {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cor-texto);
+  cursor: pointer;
+  background: none;
+  border: 0;
+  border-radius: var(--raio-controle);
+  transition: background 0.15s;
+}
+
+.calendario__dia:hover:not(:disabled):not(.calendario__dia--selecionado) {
+  background: var(--cor-primaria-clara);
+}
+
+.calendario__dia:disabled {
+  color: var(--cor-texto-desabilitado);
+  cursor: not-allowed;
+}
+
+.calendario__dia--selecionado {
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--cor-primaria);
+}
+
+.horarios__titulo {
+  margin-bottom: 14px;
+  line-height: 24px;
+  font-size: 14px;
+}
+
+.horarios__lista {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 110px));
+  gap: 12px;
+}
+
+.horario {
+  height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cor-primaria);
+  cursor: pointer;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-controle);
+  transition: background 0.15s, color 0.15s;
+}
+
+.horario:hover:not(:disabled):not(.horario--selecionado) {
+  background: var(--cor-primaria-clara);
+}
+
+.horario:disabled {
+  color: var(--cor-texto-desabilitado);
+  text-decoration: line-through;
+  cursor: not-allowed;
+  background: var(--cor-fundo);
+}
+
+.horario--selecionado {
+  color: #ffffff;
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+}
+
+/* 7. Resumo da consulta -------------------------------------------------- */
+.resumo {
+  padding: 28px;
+}
+
+.resumo__titulo {
+  padding-bottom: 14px;
+  font-size: 20px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.resumo__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.resumo__linha {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.resumo__linha dt {
+  color: var(--cor-texto-suave);
+}
+
+.resumo__linha dd {
+  font-weight: 600;
+  text-align: right;
+  color: var(--cor-titulo);
+}
+
+.resumo__valor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: var(--cor-primaria-clara);
+  border-radius: var(--raio-controle);
+}
+
+.resumo__valor-rotulo {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cor-titulo);
+}
+
+.resumo__valor-detalhe {
+  display: block;
+  font-size: 12px;
+  color: var(--cor-texto-suave);
+}
+
+.resumo__valor-numero {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--cor-primaria);
+}
+
+.resumo__bloco {
+  margin-top: 16px;
+}
+
+.resumo__bloco--divisor {
+  padding-top: 16px;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.resumo__rotulo {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cor-titulo);
+}
+
+.resumo .botao--primario {
+  margin-top: 16px;
+}
+
+.resumo .botao--contorno {
+  margin-top: 10px;
+}
+
+/* 8. Tela "escolha um médico" (NOVO) ------------------------------------- */
+.agenda-vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 640px;
+  margin: 32px auto 0;
+  padding: 48px 32px;
+  text-align: center;
+}
+
+.agenda-vazio__titulo {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cor-titulo);
+}
+
+.agenda-vazio__texto {
+  color: var(--cor-texto-suave);
+}
+
+.agenda .botao.agenda-vazio__botao {
+  width: auto;
+  padding: 0 28px;
+}
+
+.agenda-vazio__proximas {
+  width: 100%;
+  margin-top: 8px;
+  padding-top: 24px;
+  text-align: left;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.agenda-vazio__subtitulo {
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cor-titulo);
+}
+
+.agenda-vazio__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.agenda-vazio__lista li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--bg);
+  border-radius: var(--raio-controle);
+}
+
+.agenda-vazio__lista span,
+.agenda-vazio__aviso {
+  color: var(--cor-texto-suave);
+}
+
+.agenda-vazio__link {
+  display: inline-block;
+  margin-top: 14px;
+  font-weight: 600;
+  color: var(--cor-primaria);
+}
+
+/* 9. Responsivo ---------------------------------------------------------- */
+@media (max-width: 1100px) {
+  /* CORREÇÃO: o resumo desce para baixo antes (era só em 900px), pois a coluna de 420px aperta o calendário */
+  .agenda__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .escolha {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
